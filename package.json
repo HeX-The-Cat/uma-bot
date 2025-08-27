@@ -8,12 +8,13 @@
   "main": "src/index.js",
   "nodemonConfig": {
     "ignore": [
-      "config.json"
+      "config.json",
+      "./src/embedData.json"
     ]
   },
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
+    "start": "node src/bot.js",
+    "dev": "nodemon src/bot.js",
     "deploy": "node src/deploy-commands.js"
   },
   "dependencies": {

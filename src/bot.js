@@ -41,6 +41,17 @@ if (fs.existsSync(commandsPath)) {
 
 // Event handler for slash command interactions
 client.on("interactionCreate", async (interaction) => {
+  if (interaction.isButton()) {
+    const command = client.commands.get("welcome-embed");
+    if (command && command.handleButtonClick) {
+      try {
+        await command.handleButtonClick(interaction);
+      } catch (error) {
+        confirm.log("Button handling error: ", error);
+      }
+    }
+  }
+
   if (!interaction.isChatInputCommand()) return;
 
   const command = client.commands.get(interaction.commandName);
