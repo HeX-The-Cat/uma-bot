@@ -182,6 +182,8 @@ module.exports = {
   },
 
   async handleButtonClick(interaction) {
+    const moderatorEmbedsManager = interaction.client.moderatorEmbedsManager;
+
     const giveRoleIdMap = {
       memberRoleRequest: "1406795110301044886",
       lookingtoJoinRequest: "1405010208538886174",
@@ -197,15 +199,37 @@ module.exports = {
       const roleId = giveRoleIdMap[interaction.customId];
       const member = interaction.guild.members.cache.get(interaction.user.id);
 
-      const hasExistingRole = Object.values(alreadyCordMemberMap).some((roleId) => member.roles.cache.has(roleId));
+      const hasExistingMemberRole = Object.values(alreadyCordMemberMap).some((roleId) => member.roles.cache.has(roleId));
 
-      if (hasExistingRole) {
+      if (!hasExistingMemberRole) {
         await interaction.reply({ content: "You're already confirmed member of the club", flags: MessageFlags.Ephemeral });
       } else {
         if (member.roles.cache.has(roleId)) {
+          switch (roleId) {
+            case giveRoleIdMap.memberRoleRequest:
+              await moderatorEmbedsManager.cleanAlreadyMemberList(interaction.user.username);
+              await moderatorEmbedsManager.editMembersEmbed(interaction);
+              break;
+
+            case giveRoleIdMap.lookingtoJoinRequest:
+              moderatorEmbedsManager.cleanJoinRequestList(interaction.user.username);
+              await moderatorEmbedsManager.editJoinEmbed(interaction);
+              break;
+          }
           await member.roles.remove(roleId);
           await interaction.reply({ content: "Removed the role from you", flags: MessageFlags.Ephemeral });
         } else {
+          switch (roleId) {
+            case giveRoleIdMap.memberRoleRequest:
+              await moderatorEmbedsManager.setAlreadyMemberList(interaction.user.username);
+              await moderatorEmbedsManager.editMembersEmbed(interaction);
+              break;
+
+            case giveRoleIdMap.lookingtoJoinRequest:
+              moderatorEmbedsManager.setJoinRequestList(interaction.user.username);
+              await moderatorEmbedsManager.editJoinEmbed(interaction);
+              break;
+          }
           await member.roles.add(roleId);
           await interaction.reply({ content: "Gave you role", flags: MessageFlags.Ephemeral });
         }
