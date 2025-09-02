@@ -58,8 +58,7 @@ module.exports = {
         .setDescription(embedData.embedDescription)
         .addFields(
           { name: "Already member", value: 'If you\'re already member of the guild, please click "Already Member" below' },
-          { name: "Looking to join", value: 'If you\'re looking to join the club, click "Looking to join" below' },
-          { name: "", value: "Members currently looking to join: 0" }
+          { name: "Looking to join", value: 'If you\'re looking to join the club, click "Looking to join" below' }
         );
       return embed;
     };
