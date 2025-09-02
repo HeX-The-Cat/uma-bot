@@ -180,7 +180,7 @@ class ModeratorEmbedsManager {
       listString = "No users in the list.";
     } else {
       for (let i = 0; i < joinRequestList.length; i++) {
-        listString = `${listString} ${i + 1} ${joinRequestList[i]}\n`;
+        listString = `${listString} ${i + 1}. ${joinRequestList[i]}\n`;
       }
     }
     const joinEmbed = new EmbedBuilder().setColor("#4287f5").setTitle("Looking to join list").setDescription(listString);

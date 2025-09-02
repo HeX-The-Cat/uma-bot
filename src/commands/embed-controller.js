@@ -201,7 +201,7 @@ module.exports = {
 
       const hasExistingMemberRole = Object.values(alreadyCordMemberMap).some((roleId) => member.roles.cache.has(roleId));
 
-      if (!hasExistingMemberRole) {
+      if (hasExistingMemberRole) {
         await interaction.reply({ content: "You're already confirmed member of the club", flags: MessageFlags.Ephemeral });
       } else {
         if (member.roles.cache.has(roleId)) {
@@ -223,21 +223,30 @@ module.exports = {
             case giveRoleIdMap.memberRoleRequest:
               await moderatorEmbedsManager.setAlreadyMemberList(interaction.user.username);
               await moderatorEmbedsManager.editMembersEmbed(interaction);
+              await interaction.reply({
+                content:
+                  "Welcome to Thrumbos server!\n\nWe'll get in touch as soon as we can.\n\nPlease change your server nickname to match your in game name to better identify you and come say hi in the debut channel.",
+                flags: MessageFlags.Ephemeral,
+              });
               break;
 
             case giveRoleIdMap.lookingtoJoinRequest:
               moderatorEmbedsManager.setJoinRequestList(interaction.user.username);
               await moderatorEmbedsManager.editJoinEmbed(interaction);
+              await interaction.reply({
+                content:
+                  "Welcome to Thrumbos server!\n\nWe'll get in touch as soon as we can.\n\nCome say hi in the debut channel and tell us how to find you in game.",
+                flags: MessageFlags.Ephemeral,
+              });
               break;
           }
           await member.roles.add(roleId);
-          await interaction.reply({ content: "Gave you role", flags: MessageFlags.Ephemeral });
         }
       }
     } catch (error) {
       console.log("Button interaction error: ", error);
       await interaction.reply({
-        content: "Role managing failed",
+        content: "Role manager failed",
         flags: MessageFlags.Ephemeral,
       });
     }
