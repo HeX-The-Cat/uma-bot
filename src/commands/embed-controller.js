@@ -57,7 +57,7 @@ module.exports = {
         .setTitle("Welcome to Thrumbos!")
         .setDescription(embedData.embedDescription)
         .addFields(
-          { name: "Already member", value: 'If you\'re already member of the club, please click "Already member" below' },
+          { name: "Already member", value: 'If you\'re already member of the club, click "Already member" below' },
           { name: "Looking to join", value: 'If you\'re looking to join the club, click "Looking to join" below' }
         );
       return embed;
