@@ -1,4 +1,4 @@
 node_modules/
 .env
 src/embedData.json
-src/moderatorEmbeds.json
+src/moderatorEmbed.json
