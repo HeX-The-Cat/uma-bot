@@ -10,7 +10,7 @@
     "ignore": [
       "config.json",
       "./src/embedData.json",
-      "./src/moderatorEmbeds.json"
+      "./src/moderatorEmbed.json"
     ]
   },
   "scripts": {

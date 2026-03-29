@@ -21,13 +21,13 @@ module.exports = {
       subcommand
         .setName("update-description")
         .setDescription("Update welcome embed description")
-        .addStringOption((option) => option.setName("embed-description").setDescription("Adjust embed message").setRequired(true))
+        .addStringOption((option) => option.setName("embed-description").setDescription("Adjust embed message").setRequired(true)),
     )
     .addSubcommand((subcommand) =>
       subcommand
         .setName("update-color")
         .setDescription("Update welcome embed side color")
-        .addStringOption((option) => option.setName("embed-color").setDescription("Change embed color").setRequired(true))
+        .addStringOption((option) => option.setName("embed-color").setDescription("Change embed color").setRequired(true)),
     )
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
 
@@ -58,7 +58,7 @@ module.exports = {
         .setDescription(embedData.embedDescription)
         .addFields(
           { name: "Already member", value: 'If you\'re already member of the club, click "Already member" below' },
-          { name: "Looking to join", value: 'If you\'re looking to join the club, click "Looking to join" below' }
+          { name: "Looking to join", value: 'If you\'re looking to join the club, click "Looking to join" below' },
         );
       return embed;
     };
@@ -211,7 +211,7 @@ module.exports = {
               break;
 
             case giveRoleIdMap.lookingtoJoinRequest:
-              moderatorEmbedsManager.cleanJoinRequestList(interaction.user.username);
+              moderatorEmbedsManager.cleanLookingToJoinList(interaction.user.username);
               await moderatorEmbedsManager.editJoinEmbed(interaction);
               break;
           }

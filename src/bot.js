@@ -3,7 +3,7 @@ const { Client, GatewayIntentBits, Collection } = require("discord.js");
 const fs = require("fs");
 const path = require("path");
 const ConfigManager = require("./utils/configManager");
-const ModeratorEmbedsManager = require("./utils/moderatorEmbedsManager");
+const ModeratorEmbedManager = require("./utils/moderatorEmbedManager");
 require("dotenv").config();
 
 const client = new Client({
@@ -19,7 +19,7 @@ client.commands = new Collection();
 // Initialize managers
 client.configManager = new ConfigManager();
 
-client.moderatorEmbedsManager = new ModeratorEmbedsManager();
+client.moderatorEmbedManager = new ModeratorEmbedManager();
 
 // Load commands from the commands directory
 const commandsPath = path.join(__dirname, "commands");
@@ -96,7 +96,7 @@ process.on("unhandledRejection", (error) => {
 //  On ready
 client.once("ready", () => {
   console.log(`Logged in as ${client.user.tag}`);
-  client.moderatorEmbedsManager.loadConfig();
+  client.moderatorEmbedManager.loadConfig();
   client.user.setStatus("online");
 });
 
