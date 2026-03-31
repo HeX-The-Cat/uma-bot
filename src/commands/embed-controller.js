@@ -207,12 +207,12 @@ module.exports = {
           switch (roleId) {
             case giveRoleIdMap.memberRoleRequest:
               await moderatorEmbedManager.cleanAlreadyMemberList(interaction.user.username);
-              await moderatorEmbedManager.editMembersEmbed(interaction);
+              await moderatorEmbedManager.editModeratorEmbed(interaction);
               break;
 
             case giveRoleIdMap.lookingtoJoinRequest:
               moderatorEmbedManager.cleanLookingToJoinList(interaction.user.username);
-              await moderatorEmbedManager.editJoinEmbed(interaction);
+              await moderatorEmbedManager.editModeratorEmbed(interaction);
               break;
           }
           await member.roles.remove(roleId);
@@ -221,7 +221,7 @@ module.exports = {
           switch (roleId) {
             case giveRoleIdMap.memberRoleRequest:
               await moderatorEmbedManager.setAlreadyMemberList(interaction.user.username);
-              await moderatorEmbedManager.editMembersEmbed(interaction);
+              await moderatorEmbedManager.editModeratorEmbed(interaction);
               await interaction.reply({
                 content:
                   "Welcome to Thrumbos server!\n\nWe'll get in touch as soon as we can.\n\nPlease change your server nickname to match your in game name to better identify you and come say hi in the debut channel.",
@@ -231,7 +231,7 @@ module.exports = {
 
             case giveRoleIdMap.lookingtoJoinRequest:
               moderatorEmbedManager.setJoinRequestList(interaction.user.username);
-              await moderatorEmbedManager.editJoinEmbed(interaction);
+              await moderatorEmbedManager.editModeratorEmbed(interaction);
               await interaction.reply({
                 content:
                   "Welcome to Thrumbos server!\n\nWe'll get in touch as soon as we can.\n\nCome say hi in the debut channel and tell us how to find you in game.",
