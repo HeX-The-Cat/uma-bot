@@ -230,7 +230,7 @@ module.exports = {
               break;
 
             case giveRoleIdMap.lookingtoJoinRequest:
-              moderatorEmbedManager.setJoinRequestList(interaction.user.username);
+              moderatorEmbedManager.setLookingToJoinList(interaction.user.username);
               await moderatorEmbedManager.editModeratorEmbed(interaction);
               await interaction.reply({
                 content:
