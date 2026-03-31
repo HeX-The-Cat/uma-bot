@@ -181,7 +181,7 @@ module.exports = {
   },
 
   async handleButtonClick(interaction) {
-    const moderatorEmbedsManager = interaction.client.moderatorEmbedsManager;
+    const moderatorEmbedManager = interaction.client.moderatorEmbedManager;
 
     const giveRoleIdMap = {
       memberRoleRequest: "1406795110301044886",
@@ -206,13 +206,13 @@ module.exports = {
         if (member.roles.cache.has(roleId)) {
           switch (roleId) {
             case giveRoleIdMap.memberRoleRequest:
-              await moderatorEmbedsManager.cleanAlreadyMemberList(interaction.user.username);
-              await moderatorEmbedsManager.editMembersEmbed(interaction);
+              await moderatorEmbedManager.cleanAlreadyMemberList(interaction.user.username);
+              await moderatorEmbedManager.editMembersEmbed(interaction);
               break;
 
             case giveRoleIdMap.lookingtoJoinRequest:
-              moderatorEmbedsManager.cleanLookingToJoinList(interaction.user.username);
-              await moderatorEmbedsManager.editJoinEmbed(interaction);
+              moderatorEmbedManager.cleanLookingToJoinList(interaction.user.username);
+              await moderatorEmbedManager.editJoinEmbed(interaction);
               break;
           }
           await member.roles.remove(roleId);
@@ -220,8 +220,8 @@ module.exports = {
         } else {
           switch (roleId) {
             case giveRoleIdMap.memberRoleRequest:
-              await moderatorEmbedsManager.setAlreadyMemberList(interaction.user.username);
-              await moderatorEmbedsManager.editMembersEmbed(interaction);
+              await moderatorEmbedManager.setAlreadyMemberList(interaction.user.username);
+              await moderatorEmbedManager.editMembersEmbed(interaction);
               await interaction.reply({
                 content:
                   "Welcome to Thrumbos server!\n\nWe'll get in touch as soon as we can.\n\nPlease change your server nickname to match your in game name to better identify you and come say hi in the debut channel.",
@@ -230,8 +230,8 @@ module.exports = {
               break;
 
             case giveRoleIdMap.lookingtoJoinRequest:
-              moderatorEmbedsManager.setJoinRequestList(interaction.user.username);
-              await moderatorEmbedsManager.editJoinEmbed(interaction);
+              moderatorEmbedManager.setJoinRequestList(interaction.user.username);
+              await moderatorEmbedManager.editJoinEmbed(interaction);
               await interaction.reply({
                 content:
                   "Welcome to Thrumbos server!\n\nWe'll get in touch as soon as we can.\n\nCome say hi in the debut channel and tell us how to find you in game.",
